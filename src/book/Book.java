@@ -1,16 +1,14 @@
 package book;
 
-import utils.InputHelper;
-
 import java.util.Map;
 
 public class Book {
-    private String ISBN;
-    private String title;
-    private Category category;
-    private Author author;
-    private int publicationYear;
-    private int pageCount;
+    private final String ISBN;
+    private final String title;
+    private final Category category;
+    private final Author author;
+    private final int publicationYear;
+    private final int pageCount;
 
     public Book(String title, Category category, String author, int publicationYear, int pageCount) {
         this.ISBN = utils.ISBNHelper.generateISBN();
@@ -28,16 +26,6 @@ public class Book {
         this.author = Author.getAuthor(author);
         this.publicationYear = publicationYear;
         this.pageCount = pageCount;
-    }
-
-    public Book() {
-        this.ISBN = utils.ISBNHelper.generateISBN();
-        Map<String, String> bookInfoMap = InputHelper.bookInfoInput();
-        this.title = bookInfoMap.get("title");
-        this.category = Category.findCategory(bookInfoMap.get("category"));
-        this.author = Author.getAuthor(bookInfoMap.get("author"));
-        this.publicationYear = Integer.parseInt(bookInfoMap.get("publicationYear"));
-        this.pageCount = Integer.parseInt(bookInfoMap.get("pageCount"));
     }
 
     public String getTitle() {
@@ -66,5 +54,10 @@ public class Book {
 
     public void displayInformation() {
         System.out.printf("%s | ISBN: %s | Category: %s | Author: %s | Pages: %d | publication: %d\n", getTitle(), getISBN(), getCategory().getName(), getAuthor().getName(), getPageCount(), getPublicationYear());
+    }
+
+    public static Book createInstance(Map<String, String> data) {
+        return new Book(data.get("title"), data.get("category"), data.get("author"),
+                Integer.parseInt(data.get("publicationYear")), Integer.parseInt(data.get("pageCount")));
     }
 }

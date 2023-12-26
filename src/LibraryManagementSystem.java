@@ -73,8 +73,7 @@ public class LibraryManagementSystem {
             if (bookingReceipts.isEmpty()) {
                 System.out.println("You have no bookings at the moment.");
                 return;
-            }
-            if (!bookingReceipts.isEmpty()) {
+            } else {
                 for (BookingReceipt bookingReceipt : bookingReceipts.values()) {
                     System.out.printf("Booking ID: %d | Book title: %s\n", bookingReceipt.getBookingID(), bookingReceipt.getBook().getTitle());
                 }
@@ -113,21 +112,22 @@ public class LibraryManagementSystem {
     }
 
     public void addBook() {
-        Book book = new Book();
+        Map<String, String> bookInfo = InputHelper.bookInfoInput();
+        Book book = Book.createInstance(bookInfo);
         int quantity = InputHelper.quantityInput();
         library.addBook(book, quantity);
         System.out.printf("%d copies of book '%s' are added to the library.\n", quantity, book.getTitle());
     }
 
     public void addBookQuantity() {
-        String bookTitle = InputHelper.bookTitleInput();
-        Book book = library.findBook(bookTitle);
+        String bookInfo = InputHelper.bookInput();
+        Book book = library.findBook(bookInfo);
         if (book != null) {
             int quantity = InputHelper.quantityInput();
             library.addBook(book, quantity);
-            System.out.printf("%d copies of book '%s' are added to the library.\n", quantity, bookTitle);
+            System.out.printf("%d copies of book '%s' are added to the library.\n", quantity, book.getTitle());
         } else {
-            System.out.printf("Book with title '%s' doesn't exist in the library.", bookTitle);
+            System.out.printf("Book with title or ISBN '%s' doesn't exist in the library.\n", bookInfo);
         }
     }
 
@@ -188,6 +188,7 @@ public class LibraryManagementSystem {
                 if (selectedAction == CustomerAction.GO_BACK) {
                     break;
                 }
+                System.out.println(selectedAction.getDescription());
                 selectedAction.getAssociatedFunction().accept(this);
             }
         }
@@ -196,10 +197,10 @@ public class LibraryManagementSystem {
     private void runAdminMenu() {
         String[] adminInput = InputHelper.adminInput();
         if (library.authenticateAsAnAdmin(adminInput[0], adminInput[1])) {
+            System.out.println("You have logged in successfully as an admin!");
             while (true) {
                 sleep();
                 System.out.println("===================================================");
-                ;
                 for (AdminAction action : AdminAction.values()) {
                     System.out.println(action.ordinal() + 1 + "| " + action.getAction());
                 }
@@ -207,8 +208,10 @@ public class LibraryManagementSystem {
                 if (AdminAction.isValidAction(choice)) {
                     AdminAction selectedAction = AdminAction.values()[choice - 1];
                     if (selectedAction == AdminAction.LOGOUT) {
+                        System.out.println("Logging out...");
                         break;
                     }
+                    System.out.println(selectedAction.getDescription());
                     selectedAction.getAssociatedFunction().accept(this);
                 }
             }
@@ -222,7 +225,7 @@ public class LibraryManagementSystem {
         while (true) {
             sleep();
             System.out.println("Choose an option:");
-            System.out.print("1| Customer Menu \n2| Admin menu\n3| Exit\n");
+            System.out.print("1| Customer Menu \n2| Admin Menu\n3| Exit\n");
             int choice = InputHelper.choiceInput();
             if (choice == 1) {
                 runCustomerMenu();

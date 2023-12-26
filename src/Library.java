@@ -36,7 +36,6 @@ public class Library {
         this.subscriptionManagement = new SubscriptionManagement();
     }
 
-
     public String getName() {
         return name;
     }
@@ -64,7 +63,6 @@ public class Library {
         books.put(book.getISBN(), item);
     }
 
-
     public void addBook(Book book) {
         if (!books.containsKey(book.getISBN())) {
             BookItem item = new BookItem(book, 0);
@@ -83,10 +81,17 @@ public class Library {
         books.remove(book.getISBN());
     }
 
-    public Book findBook(String bookTitle) {
+    public Book findBook(String string) {
+        if (utils.ISBNHelper.isValidISBN(string)) {
+            BookItem bookItem = books.get(string);
+            if (bookItem != null) {
+                return bookItem.getBook();
+            }
+            return null;
+        }
         List<Book> foundBooks = new ArrayList<>();
         for (BookItem bookItem : books.values()) {
-            if (bookItem.getBook().getTitle().equalsIgnoreCase(bookTitle)) {
+            if (bookItem.getBook().getTitle().equalsIgnoreCase(string)) {
                 foundBooks.add(bookItem.getBook());
             }
         }
@@ -95,14 +100,6 @@ public class Library {
         } else if (foundBooks.size() > 1) {
             int x = InputHelper.handleMultipleBooks(foundBooks);
             return foundBooks.get(Math.min(x, foundBooks.size() - 1));
-        }
-        return null;
-    }
-
-    public Book findBookByISBN(String ISBN) {
-        BookItem bookItem = books.get(ISBN);
-        if (bookItem != null) {
-            return bookItem.getBook();
         }
         return null;
     }
@@ -152,13 +149,8 @@ public class Library {
             }
             return;
         }
-        Book book;
-        if (utils.ISBNHelper.isValidISBN(string)) {
-            book = findBookByISBN(string);
-        } else {
-            book = findBook(string);
-        }
 
+        Book book = findBook(string);
         if (book != null) {
             if (subscription.checkBook(book) && subscription.getTier() != Tier.PREMIUM) {
                 System.out.println("Sorry, you cannot borrow the same book more than once simultaneously, you need premium subscription to be able to do that.");
@@ -320,6 +312,5 @@ public class Library {
             e.printStackTrace();
         }
     }
-
 
 }
