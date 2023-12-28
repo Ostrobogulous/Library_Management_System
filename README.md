@@ -31,69 +31,44 @@ Admins are responsible for the management of the library. They can:
 
 ## System Components
 
-1. *Admin*: Manages administrative tasks in the library.
+1. *Library*: Represents the library and its operations.
 
-2. *Author*: Represents the creator of a book.
+2. *LibraryManagementSystem*: Main class to run the system.
 
-3. *AuthorTalk*: Represents events or talks given by authors.
+3. *User*: General class representing a user of the system.
 
-4. *Book*: Represents a book in the library.
+4. *Admin*: Manages administrative tasks in the library.
 
-5. *BookItem*: Represents a physical copy of a book in the library.
+5. *Customer*: Represents a customer of the library.
 
-6. *Booking*: Represents a customer's book borrowing.
+6. *Subscription*: Represents a customer's subscription to the library.
 
-7. *BookingHistory*: Maintains the borrowing history of books.
+7. *Tier*: Represents different levels of subscription tiers.
 
-8. *BookingReceipt*: Represents a receipt for book borrowing.
+8. *SubscriptionManagement*: Manages subscription operations in the library.
 
-9. *Category*: Represents different categories of books.
+9. *Book*: Represents a book in the library.
 
-10. *Customer*: Represents a customer of the library.
+10. *Category*: Represents different categories of books.
 
-11. *DateHelper*: Assists with date-related operations.
+11. *Author*: Represents the creator of a book.
 
-12. *ISBNHelper*: Manages operations related to ISBN.
+12. *BookItem*: Represents a physical copy of a book in the library.
 
-13. *InputHelper*: Assists with user input in the system.
+13. *Booking*: Represents a customer's book borrowing.
 
-14. *Library*: Represents the library and its operations.
+14. *BookingReceipt*: Represents a receipt for book borrowing.
 
-15. *LibraryManagementSystem*: Main class to run the system.
+15. *BookingHistory*: Maintains the borrowing history of books.
 
-16. *Subscription*: Represents a customer's subscription to the library.
+16. *AuthorTalk*: Represents events or talks given by authors.
 
-17. *SubscriptionManagement*: Manages subscription operations in the library.
-
-18. *Tier*: Represents different levels of subscription tiers.
-
-19. *User*: General class representing a user of the system.
 
 ## Interactions and Relationships
 
 - *Admin and User*: Admin inherits from User.
 - *Customer and User*: Customer inherits from User.
-- The system allows the creation of AuthorTalk, Book, BookItem, Booking, BookingReceipt, Subscription, and SubscriptionManagement objects.
-- Relationships exist between these entities, such as Book and Author, Booking and Subscription, and more.
-
-## System Functions
-
-### For Customers
-- *subscribe()*: Obtain a subscription.
-- *unsubscribe()*: Cancel their subscription.
-- *viewSubscriptionDetails()*: View details of their subscription.
-- *borrowBook()*: Borrow a book from the library.
-- *viewAvailableBooks()*: View all available books.
-- *viewBorrowedBooks()*: Check their borrowed books.
-- *viewUpcomingAuthorTalks()*: Get information about upcoming author talks.
-
-### For Admins
-- *addBook()*: Add a new book to the library.
-- *addBookQuantity()*: Increase the quantity of a book.
-- *removeBook()*: Remove a book from the library.
-- *viewBooks()*: View all books in the library.
-- *addAuthorTalk()*: Schedule a new author talk.
-- *modifyAuthorTalk()*: Modify details of an existing author talk.
+- The system allows the creation of AuthorTalk, Book, BookItem, Booking, BookingReceipt and Subscription objects.
 
 ## Usage and Operation
 
