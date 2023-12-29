@@ -25,7 +25,7 @@ public class LibraryManagementSystem {
     }
 
     public static void main(String[] args) {
-        Library library = new Library("FTW");
+        Library library = new Library("EPIC");
         LibraryManagementSystem lms = new LibraryManagementSystem(library);
         lms.run();
     }
@@ -221,7 +221,7 @@ public class LibraryManagementSystem {
     }
 
     private void run() {
-        System.out.println("Welcome to the " + library.getName() + " library management system!");
+        System.out.println("Welcome to the " + library.getName() + " library!");
         while (true) {
             sleep();
             System.out.println("Choose an option:");

@@ -6,6 +6,7 @@ public enum AdminAction {
     REMOVE_BOOK("Remove Book", "Remove a book from the library.", LibraryManagementSystem::removeBook),
     VIEW_BOOKS("View Books", "View all books in the library.", LibraryManagementSystem::viewBooks),
     ADD_AUTHOR_TALK("Add Author Talk", "Program an author talk.", LibraryManagementSystem::addAuthorTalk),
+    VIEW_UPCOMING_AUTHOR_TALKS("View Upcoming Author Talks", "View future author talks programmed in the library.", LibraryManagementSystem::viewUpcomingAuthorTalks),
     MODIFY_AUTHOR_TALK("Modify Author Talk", "Modify an author talk.", LibraryManagementSystem::modifyAuthorTalk),
     LOGOUT("Logout", "Logout from admin panel.", LibraryManagementSystem::logout);
 

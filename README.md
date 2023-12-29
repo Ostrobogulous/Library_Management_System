@@ -63,6 +63,8 @@ Admins are responsible for the management of the library. They can:
 
 16. *AuthorTalk*: Represents events or talks given by authors.
 
+## Diagram
+![22](https://github.com/Ostrobogulous/Library_Management_System/assets/73111142/df1d9d57-87ed-42fb-a18c-777ae6515246)
 
 ## Interactions and Relationships
 
@@ -77,5 +79,3 @@ Admins are responsible for the management of the library. They can:
 - **Initialization from CSV File**: The system incorporates an initial data setup where books and admins are instantiated from a CSV file.
 - Each user action triggers specific operations within the library, such as book borrowing, returning, or subscription management.
 
-## Diagram
-![22](https://github.com/Ostrobogulous/Library_Management_System/assets/73111142/df1d9d57-87ed-42fb-a18c-777ae6515246)
